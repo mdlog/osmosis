@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Osmosis — learn a language from the web you read",
+  "short_name": "Osmosis",
+  "version": "0.1.0",
+  "description": "Turns the pages you already read into a graded reader at your level. Private on-device AI with Firebase AI Logic hybrid inference.",
+  "minimum_chrome_version": "139",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjIOxZ5aBrZRUhOted1lRYoMbv2tkWt03Y8UcVPKGCeFPtZN5rNVEYOjK0wps/loKtHV3qrtp1WRiuJwdxezjnSoY7WpXHaKRh6ro/wxDcv/nevp2LsXyiqzNQFVBwYYutY3aIqVJtSdHIhMk/pIvjrgC6XoGEc9JH1WYvxV4FmlZlH66FZzk5BXxoProe7Y3yZBBaLsi1djTIg79/faBEuUnzFIIn2VtYPLVVPhCyTBdPE59aftCeqkp6duY5wGRGKqRIQDUQTxjvlDxAlPLGPxLWD6X+yDI7ed7GKffr+tXjDK75tITt1B+HsUjqxU/jf4wHC7ODbsf6iS7wBp0MwIDAQAB",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://*.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "action": {
+    "default_title": "Osmosis",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Osmosis</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <header>
+    <img class="mark" src="logo.svg" alt="" width="34" height="34">
+    <div>
+      <h1>Osmosis</h1>
+      <p class="tag">Learn a language from the web you already read.</p>
+    </div>
+  </header>
+
+  <section id="setup" class="card">
+    <h2>Your language</h2>
+    <div class="grid2">
+      <label>Learning
+        <select id="lang">
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="ja">Japanese</option>
+        </select>
+      </label>
+      <label>Level
+        <select id="level">
+          <option>A1</option><option>A2</option><option>B1</option><option>B2</option>
+        </select>
+      </label>
+    </div>
+    <div class="model">
+      <span id="model-dot" class="dot"></span>
+      <span id="model-text">Checking on-device AI…</span>
+      <button id="model-btn" hidden>Download on-device model</button>
+    </div>
+    <progress id="model-progress" max="1" value="0" hidden></progress>
+  </section>
+
+  <section class="card">
+    <h2>Your words</h2>
+    <div class="stats">
+      <div><b id="n-known">0</b><span>known</span></div>
+      <div><b id="n-learning">0</b><span>learning</span></div>
+      <div><b id="n-struggle">0</b><span>you peeked at</span></div>
+    </div>
+    <p id="lex-status" class="muted small" role="status" hidden></p>
+    <ol id="struggle" class="words"></ol>
+  </section>
+
+  <section class="card" id="podcast-card">
+    <h2>Your reading, as a podcast</h2>
+    <p class="muted">Gemini writes a short story at your level using the words you peeked at most, then reads it aloud. Only the word list leaves your device.</p>
+    <button id="podcast-btn" class="primary">Make today's episode</button>
+    <div id="podcast" hidden></div>
+  </section>
+
+  <section class="card">
+    <h2>Privacy ledger <span class="muted small">today</span></h2>
+    <dl class="ledger">
+      <dt>Page text sent to the cloud</dt><dd id="l-page">0 characters</dd>
+      <dt>Word lists sent to the cloud</dt><dd id="l-words">0 characters</dd>
+      <dt>On-device AI calls</dt><dd id="l-ondevice">0</dd>
+      <dt>Cloud AI calls</dt><dd id="l-cloud">0</dd>
+    </dl>
+    <label class="consent"><input type="checkbox" id="consent"> If this device can't run on-device AI, allow page text to be translated in the cloud.</label>
+  </section>
+
+  <script src="panel.js"></script>
+</body>
+</html>

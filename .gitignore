@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env.local
+spike/results.json
+*.log
+web/public/osmosis/
+.keys/
+.firebase/
+SPEC.md

@@ -1,0 +1,33 @@
+{
+  "name": "osmosis",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "chrome": "scripts/chrome.sh",
+    "serve": "cd web/public && python3 -m http.server 8771",
+    "check:net": "node scripts/netcheck.cjs",
+    "check:ui": "node scripts/interact.cjs",
+    "check:web": "node scripts/webcheck.cjs",
+    "check:cloud": "node scripts/cloudcheck.cjs",
+    "check:webcloud": "node scripts/webcloud.cjs",
+    "icons": "node scripts/icons.cjs",
+    "check:lexicon": "node scripts/lexcheck.cjs"
+  },
+  "dependencies": {
+    "firebase": "^13.4.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.8",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.4",
+    "playwright-core": "^1.63.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  },
+  "license": "Apache-2.0"
+}

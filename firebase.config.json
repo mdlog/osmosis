@@ -1,0 +1,16 @@
+{
+  "firebase": {
+    "apiKey": "AIzaSyA0pA3sQGGZYC0G5x5SCuXDq1fpgg16Jlc",
+    "authDomain": "osmosis-hybrid.firebaseapp.com",
+    "projectId": "osmosis-hybrid",
+    "storageBucket": "osmosis-hybrid.firebasestorage.app",
+    "messagingSenderId": "272149413163",
+    "appId": "1:272149413163:web:c18233f296d103bcb5996e"
+  },
+  "models": {
+    "text": "gemini-3.5-flash-lite",
+    "textFallback": "gemini-3.5-flash",
+    "tts": "gemini-3.1-flash-tts-preview"
+  },
+  "recaptchaSiteKey": "6LeOujEuAAAAAOmrxK0Polc7XlwigYM95bAq-0z3"
+}

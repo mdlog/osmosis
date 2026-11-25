@@ -1,0 +1,38 @@
+/* Page-level styles for wrapped sentences. Kept minimal so host pages look like themselves. */
+.osm-s .osm-tr { display: none; }
+.osm-s.osm-on .osm-orig { display: none; }
+.osm-s.osm-on .osm-tr {
+  display: inline;
+  /* A highlighter-pen band over most of the line height: visible at a glance on light and dark pages. */
+  background: linear-gradient(transparent 18%, rgba(72, 222, 140, 0.48) 18%, rgba(72, 222, 140, 0.48) 96%, transparent 96%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+  border-radius: 0.15em;
+  animation: osm-in 0.35s ease-out;
+  cursor: help;
+}
+.osm-s.osm-on .osm-w.osm-new {
+  text-decoration: underline 2px rgba(20, 99, 70, 0.75);
+  text-underline-offset: 3px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.osm-pending { position: relative; }
+.osm-pending::after {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #57e39a;
+  animation: osm-pulse 1s ease-in-out infinite;
+}
+@keyframes osm-in { from { opacity: 0; filter: blur(2px); } to { opacity: 1; filter: none; } }
+@keyframes osm-pulse { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) {
+  .osm-s.osm-on .osm-tr, .osm-pending::after { animation: none; }
+}

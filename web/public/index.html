@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Osmosis — learn a language from the web you already read</title>
+  <meta name="description" content="A Chrome extension that turns the English articles you read into a graded reader in Spanish, French, German or Japanese. On-device AI with Firebase AI Logic: your reading never leaves your computer.">
+  <meta name="theme-color" content="#10231d">
+  <meta name="osmosis" content="off">
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/site.css">
+</head>
+<body>
+  <header class="mast">
+    <div class="wrap">
+      <a class="brand" href="/"><img class="mark" src="/logo.svg" alt="" width="24" height="24"><b>Osmosis</b></a>
+      <span class="edition">A graded reader for the open web</span>
+      <nav aria-label="Sections">
+        <a href="#how">How it works</a>
+        <a href="#membrane">What runs where</a>
+        <a href="#proof">Privacy</a>
+        <a href="#install">Install</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding:0">
+      <div class="wrap">
+        <div>
+          <p class="kicker rise">Chrome extension · Spanish, French, German, Japanese</p>
+          <h1 class="rise">Learn a language from the web you <em>already read.</em></h1>
+          <p class="lede rise">Osmosis rewrites a share of every English article in the language you're learning, picking sentences that add about <strong>one new word</strong> at a time. It runs on Gemini Nano, <strong>on your own computer</strong>, so what you read stays with you.</p>
+          <div class="ctas rise">
+            <a class="btn" href="/read/night-train.html">Read the demo article <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="link" href="#how">How it works</a>
+          </div>
+        </div>
+
+        <div class="specimen rise" aria-label="Live example: move the dial">
+          <article class="page" id="specimen">
+            <span class="k">Travel</span>
+            <h2>The last night train still runs on time</h2>
+            <p>
+              <span class="s" data-o="0" data-es="Cada noche, a las diez y cuarto, un pequeño tren azul sale de la estación en el {borde} del pueblo viejo." data-w="borde=edge">Every evening at a quarter past ten, a small blue train leaves the station at the edge of the old town.</span>
+              <span class="s" data-o="2" data-es="Solo tiene cuatro {vagones}, y casi todas las noches suben menos de treinta personas." data-w="vagones=cars (of a train)">It has only four cars, and most nights fewer than thirty people get on.</span>
+              <span class="s" data-o="4" data-es="El {billete} cuesta menos que una taza de café, y el viaje a la costa dura casi seis horas." data-w="billete=ticket">The ticket costs less than a cup of coffee, and the trip to the coast takes almost six hours.</span>
+            </p>
+            <p>
+              <span class="s" data-o="1" data-es="La gente le pregunta a la {conductora} por qué la línea todavía existe." data-w="conductora=driver">People ask the driver why the line still exists.</span>
+              <span class="s" data-o="3" data-es="Ella se ríe y dice que el tren es lento {a propósito}." data-w="a propósito=on purpose">She laughs and says that the train is slow on purpose.</span>
+              <span class="s" data-o="5" data-es="Para muchos pasajeros, el tren nocturno es el único lugar {tranquilo} de toda la semana." data-w="tranquilo=quiet">For many passengers, the night train is the only quiet place they have all week.</span>
+            </p>
+          </article>
+          <span class="try">Move the dial. Hover a green sentence.</span>
+          <div class="dial" role="group" aria-label="Osmosis dial">
+            <img class="mark" src="/logo-on-dark.svg" alt="" width="24" height="24">
+            <div class="col">
+              <div class="row"><span class="lang">Spanish · A2</span><span class="pct" id="pct">0%</span></div>
+              <input id="dial" type="range" min="0" max="100" step="1" value="0" aria-label="How much of the page is in Spanish">
+              <div class="row"><span class="meta" id="meta">0 of 6 sentences</span><span class="src"><span class="dot"></span>on this device</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="label"><span class="n">i.</span><h2>Reading that is <em>almost</em> easy, which is where learning happens.</h2></div>
+        <div class="steps">
+          <div class="step rise">
+            <div class="num">1</div>
+            <h3>Turn one dial</h3>
+            <p>The dial sets how much of each page is in the language you're learning. At 10% you meet a sentence now and then. At 80% you're reading a foreign newspaper.</p>
+            <div class="mini pill" aria-hidden="true"><span>Spanish · A2</span><span class="bar"></span><span class="pct">35%</span></div>
+          </div>
+          <div class="step rise">
+            <div class="num">2</div>
+            <h3>One new word at a time</h3>
+            <p>A sentence only switches if you'd understand almost all of it. Osmosis counts the new words against the words you know and prefers sentences with exactly one. Our code makes that choice, not the model.</p>
+            <div class="mini"><span class="s es">Solo tiene cuatro <span class="nw">vagones</span>.</span><small>One new word: <b>vagones</b>. Everything else you already know.</small></div>
+          </div>
+          <div class="step rise">
+            <div class="num">3</div>
+            <h3>Hover when you're stuck</h3>
+            <p>Hover a sentence to see the original and the new word. Linger, and Osmosis takes note. Click a word once you know it, and it stops being highlighted.</p>
+            <div class="mini hover" aria-hidden="true"><div class="orig">It has only four cars.</div><div class="g"><b>vagones</b>cars (of a train)</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="membrane" class="membrane-sec">
+      <div class="wrap">
+        <div class="label"><span class="n">ii.</span><h2>A <em>semi-permeable</em> membrane for your data.</h2></div>
+        <div class="membrane rise">
+          <div class="cell dev head"><h3>On your computer</h3><span>Gemini Nano, in Chrome</span></div>
+          <div class="wall"></div>
+          <div class="cell cld head"><h3>In the cloud</h3><span>Gemini, via Firebase AI Logic</span></div>
+
+          <div class="cell dev row"><h4>The pages you read</h4><p>Every sentence is rewritten at your level by the on-device model, right here.</p><span class="mode">ONLY_ON_DEVICE</span></div>
+          <div class="wall row block"><div class="lane"><i></i><i></i><i></i></div><span class="tag">page text stays</span></div>
+          <div class="cell cld row none">Nothing. Page text has no way through.</div>
+
+          <div class="cell dev row"><h4>The words you lingered on</h4><p>Only the list: <i>vagones, billete, a propósito…</i></p></div>
+          <div class="wall row pass"><div class="lane"><i></i><i></i><i></i></div><span class="tag">word list</span></div>
+          <div class="cell cld row"><h4>Your reading, as a podcast</h4><p>Gemini writes a two-minute story at your level with those words, then reads it aloud.</p><span class="mode">ONLY_IN_CLOUD</span></div>
+
+          <div class="cell dev row"><h4>Your language and level</h4><p>Two fields: <i>Spanish, A2</i>.</p></div>
+          <div class="wall row pass"><div class="lane"><i></i><i></i><i></i></div><span class="tag">2 fields</span></div>
+          <div class="cell cld row"><h4>Your starter vocabulary</h4><p>A word list for your level, so day one isn't all new words.</p><span class="mode">ONLY_IN_CLOUD</span></div>
+        </div>
+        <p class="foot-note">One door opens only if you ask. On a computer that can't run Gemini Nano, you can let page text through in the side panel (<code>PREFER_ON_DEVICE</code>). It is off by default, and the privacy ledger counts every character that crosses.</p>
+      </div>
+    </section>
+
+    <section id="proof" class="proof">
+      <div class="wrap">
+        <div class="rise">
+          <p class="zero" aria-hidden="true">0</p>
+          <p class="zero-cap">network requests while Osmosis translated a whole article on your device. <em>We checked.</em></p>
+        </div>
+        <div class="rise">
+          <div class="term" role="img" aria-label="Terminal output of the network check: 11 on-device model calls, capture verified with a control request, 0 network requests during translation">
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+<pre><span class="p">$</span> npm run check:net
+<span class="dim">done {"tr":24,"pend":0,"s":24} 73s</span>
+cache cleared: 24; model calls: 11 <span class="hl">(on_device)</span>
+capture working (control seen): <span class="hl">true</span>
+service-worker network requests during translation: <span class="hl">0</span></pre>
+          </div>
+          <p class="how">The check clears Osmosis's cache, translates a 24-sentence article in a real Chrome, and records every network request from the extension's service worker, where all page translation happens. To prove the recorder works, it also sends one deliberate request, and that one shows up.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install" style="padding-top:40px">
+      <div class="wrap">
+        <div class="label"><span class="n">iii.</span><h2>Try it.</h2></div>
+        <div class="grid">
+          <ol class="rise">
+            <li><div><b>Get the code and build it</b><span><code>npm install</code> then <code>npm run build</code>. The README covers the Firebase setup.</span></div></li>
+            <li><div><b>Load it in Chrome</b><span>Open <code>chrome://extensions</code>, turn on Developer mode, then <i>Load unpacked</i> and pick <code>dist/extension</code>.</span></div></li>
+            <li><div><b>Choose your language</b><span>Click the Osmosis icon. Pick a language and level, and let Chrome download its on-device model.</span></div></li>
+            <li><div><b>Read anything in English</b><span>News, blogs, documentation. The dial sits in the corner.</span></div></li>
+          </ol>
+          <aside class="aside rise">
+            <h3>No extension? Read the demo.</h3>
+            <p>The demo article runs the same code inside the page. If your Chrome has Gemini Nano, it translates on your computer. If not, the demo article (ours, not your browsing) goes to Gemini in the cloud.</p>
+            <a class="btn" href="/read/night-train.html">Open the demo article <span class="arrow" aria-hidden="true">→</span></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Osmosis · made for #BuildHybridAI 2026 · on-device and cloud inference through Firebase AI Logic</span>
+      <span>Apache-2.0 · the demo article is original writing</span>
+    </div>
+  </footer>
+
+  <div class="card" id="card" role="tooltip"></div>
+  <script src="/site.js" defer></script>
+</body>
+</html>
