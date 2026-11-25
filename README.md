@@ -14,12 +14,12 @@
 </p>
 
 <p align="center">
+  <a href="https://youtu.be/uLlINhcut5o"><b>Demo video (2:43)</b></a> ·
   <a href="https://osmosis-hybrid.web.app">Website</a> ·
   <a href="https://osmosis-hybrid.web.app/read/night-train">Demo article (no install)</a> ·
   <a href="#run-it">Install</a> ·
   <a href="#checks-against-a-real-chrome">Checks</a> ·
   <a href="LICENSE">Apache-2.0</a>
-  <!-- TODO before submission: YouTube link -->
 </p>
 
 <p align="center">
