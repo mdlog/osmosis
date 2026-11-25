@@ -43,16 +43,31 @@ export function firebase(kind: 'extension' | 'web'): FirebaseApp {
 
 export type RewriteMode = 'only_on_device' | 'prefer_on_device';
 
-const models = new Map<string, GenerativeModel>();
+/**
+ * An on-device prompt that runs this long has gone wrong: the small model occasionally keeps
+ * generating inside the JSON schema (one single-sentence prompt took 129 s). Prompts run one at a
+ * time, so a runaway one would hold up every paragraph queued behind it. It is aborted instead,
+ * and its sentences stay in English. Normal prompts take 3 to 14 s.
+ */
+const ON_DEVICE_PROMPT_MS = 40_000;
+
+/** Firebase AI Logic keeps this object and hands it to every on-device prompt; `signal` is set per call. */
+interface PromptOptions {
+  responseConstraint: Record<string, unknown>;
+  signal?: AbortSignal;
+}
+
+const models = new Map<string, { model: GenerativeModel; promptOptions: PromptOptions }>();
 
 /** The rewrite model for one language/level. Page text uses ONLY_ON_DEVICE unless the user opted in to cloud fallback. */
-function rewriteModel(lang: Lang, level: Level, mode: RewriteMode, cloud = ENV.models.text): GenerativeModel {
+function rewriteModel(lang: Lang, level: Level, mode: RewriteMode, cloud = ENV.models.text) {
   const key = `${lang}:${level}:${mode}:${cloud}`;
-  let m = models.get(key);
-  if (m) return m;
+  const have = models.get(key);
+  if (have) return have;
   const ai = getAI(app!, { backend: new GoogleAIBackend() });
   const system = rewriteSystem(lang, level);
-  m = getGenerativeModel(ai, {
+  const promptOptions: PromptOptions = { responseConstraint: REWRITE_SCHEMA as unknown as Record<string, unknown> };
+  const model = getGenerativeModel(ai, {
     mode: mode === 'only_on_device' ? InferenceMode.ONLY_ON_DEVICE : InferenceMode.PREFER_ON_DEVICE,
     onDeviceParams: {
       createOptions: {
@@ -60,7 +75,7 @@ function rewriteModel(lang: Lang, level: Level, mode: RewriteMode, cloud = ENV.m
         expectedOutputs: [{ type: 'text', languages: [lang] }],
         initialPrompts: [{ role: 'system', content: [{ type: 'text', value: system }] }],
       },
-      promptOptions: { responseConstraint: REWRITE_SCHEMA },
+      promptOptions,
     },
     inCloudParams: {
       model: cloud,
@@ -68,8 +83,9 @@ function rewriteModel(lang: Lang, level: Level, mode: RewriteMode, cloud = ENV.m
       generationConfig: { responseMimeType: 'application/json', responseJsonSchema: REWRITE_SCHEMA, temperature: 0.2 },
     },
   });
-  models.set(key, m);
-  return m;
+  const entry = { model, promptOptions };
+  models.set(key, entry);
+  return entry;
 }
 
 export interface RewriteResult {
@@ -118,7 +134,11 @@ async function withFallback<T>(call: (model: string) => Promise<T>): Promise<T> 
 async function once(sentences: string[], lang: Lang, level: Level, mode: RewriteMode) {
   const prompt = rewritePrompt(sentences, lang, level);
   const t0 = performance.now();
-  const call = (model: string) => rewriteModel(lang, level, mode, model).generateContent(prompt);
+  const call = (model: string) => {
+    const m = rewriteModel(lang, level, mode, model);
+    m.promptOptions.signal = AbortSignal.timeout(ON_DEVICE_PROMPT_MS);
+    return m.model.generateContent(prompt);
+  };
   // On-device only: no cloud model to fall back to.
   const r = mode === 'only_on_device' ? await retrying(() => call(ENV.models.text)) : await withFallback(call);
   const source = (r.response.inferenceSource ?? 'in_cloud') as InferenceSource;
@@ -128,12 +148,23 @@ async function once(sentences: string[], lang: Lang, level: Level, mode: Rewrite
   return { items, source, sentUp: source === 'in_cloud' ? prompt.length : 0 };
 }
 
+const timedOut = (e: unknown) => e instanceof Error && /TimeoutError|AbortError/.test(e.name + ' ' + e.message);
+
 /**
  * Translate one paragraph. One batched call, then one retry per sentence the model
  * skipped or garbled (small on-device models occasionally truncate structured output).
  */
 export async function rewrite(sentences: string[], lang: Lang, level: Level, mode: RewriteMode): Promise<RewriteResult> {
-  const first = await once(sentences, lang, level, mode);
+  let first: RewriteResult;
+  try {
+    first = await once(sentences, lang, level, mode);
+  } catch (e) {
+    if (!timedOut(e)) throw e;
+    console.warn(`[osmosis] on-device prompt passed ${ON_DEVICE_PROMPT_MS / 1000} s, abandoned (${sentences.length} sentences)`);
+    // A batch that ran away gets the one-sentence retries below; a single sentence stays English.
+    first = { items: sentences.map(() => null), source: 'on_device', sentUp: 0 };
+    if (sentences.length === 1) return first;
+  }
   let { items, source, sentUp } = first;
   for (const k of missing(items)) {
     try {
@@ -282,6 +313,6 @@ export function pcmToWav(pcm: Uint8Array, rate: number): Blob {
 
 /** Download / warm the on-device model via the SDK (must run after a user gesture). */
 export async function prepareOnDevice(lang: Lang, level: Level, onProgress: (p: number) => void): Promise<void> {
-  await rewriteModel(lang, level, 'only_on_device').initializeDeviceModel(onProgress);
+  await rewriteModel(lang, level, 'only_on_device').model.initializeDeviceModel(onProgress);
 }
 
