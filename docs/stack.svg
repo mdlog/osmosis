@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 288" width="880" height="288" role="img" aria-label="Built with: Firebase AI Logic, Gemini Nano, Gemini 3.5 Flash, Gemini TTS, App Check, Chrome extension (Manifest V3), Firebase Hosting, TypeScript, esbuild, Vitest and Playwright">
+  <!-- Osmosis tech stack strip. Every icon here is drawn for this project; no third-party logos. -->
+  <style>
+    .card { fill: #0f2a1e; }
+    .rule { stroke: #2a5a43; stroke-width: 1; }
+    .title { font: 600 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; letter-spacing: 2.5px; fill: #57e39a; }
+    .tile { fill: #163b2b; stroke: #2a5a43; stroke-width: 1; }
+    .glyph { fill: none; stroke: #57e39a; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .name { font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #f3efe6; }
+    .sub { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #9cc3ae; }
+  </style>
+  <rect class="card" width="880" height="288" rx="20"/>
+  <path class="rule" d="M290 34.5h94M496 34.5h94"/>
+  <text class="title" x="440" y="38.5" text-anchor="middle">BUILT WITH</text>
+
+  <!-- Row 1: hybrid AI -->
+  <g transform="translate(107.2 0)">
+    <rect class="tile" x="-24" y="58" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 70)"><path d="M4 8.5h14.5l-3.2-3.2M20 15.5H5.5l3.2 3.2"/></g>
+    <text class="name" y="130" text-anchor="middle">Firebase AI Logic</text>
+    <text class="sub" y="148" text-anchor="middle">hybrid inference SDK</text>
+  </g>
+  <g transform="translate(273.6 0)">
+    <rect class="tile" x="-24" y="58" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 70)"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9.5 2.5v3M14.5 2.5v3M9.5 18.5v3M14.5 18.5v3M2.5 9.5h3M2.5 14.5h3M18.5 9.5h3M18.5 14.5h3"/></g>
+    <text class="name" y="130" text-anchor="middle">Gemini Nano</text>
+    <text class="sub" y="148" text-anchor="middle">on-device, in Chrome</text>
+  </g>
+  <g transform="translate(440 0)">
+    <rect class="tile" x="-24" y="58" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 70)"><path d="M7 18.5h10.5a4.5 4.5 0 0 0 .6-8.96A6 6 0 0 0 6.3 10.7 4 4 0 0 0 7 18.5Z"/></g>
+    <text class="name" y="130" text-anchor="middle">Gemini 3.5 Flash</text>
+    <text class="sub" y="148" text-anchor="middle">cloud, word lists</text>
+  </g>
+  <g transform="translate(606.4 0)">
+    <rect class="tile" x="-24" y="58" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 70)"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 10.5v3"/></g>
+    <text class="name" y="130" text-anchor="middle">Gemini TTS</text>
+    <text class="sub" y="148" text-anchor="middle">podcast audio</text>
+  </g>
+  <g transform="translate(772.8 0)">
+    <rect class="tile" x="-24" y="58" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 70)"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3Z"/><path d="M9 12l2.2 2.2L15.3 10"/></g>
+    <text class="name" y="130" text-anchor="middle">App Check</text>
+    <text class="sub" y="148" text-anchor="middle">reCAPTCHA Enterprise</text>
+  </g>
+
+  <!-- Row 2: platform and tooling -->
+  <g transform="translate(107.2 0)">
+    <rect class="tile" x="-24" y="174" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 186)"><path d="M4 7.5h4a2.5 2.5 0 1 1 5 0h4v4a2.5 2.5 0 1 1 0 5v4H4Z"/></g>
+    <text class="name" y="246" text-anchor="middle">Chrome extension</text>
+    <text class="sub" y="264" text-anchor="middle">Manifest V3, side panel</text>
+  </g>
+  <g transform="translate(273.6 0)">
+    <rect class="tile" x="-24" y="174" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 186)"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></g>
+    <text class="name" y="246" text-anchor="middle">Firebase Hosting</text>
+    <text class="sub" y="264" text-anchor="middle">site and web demo</text>
+  </g>
+  <g transform="translate(440 0)">
+    <rect class="tile" x="-24" y="174" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 186)"><path d="M9 4C7 4 6 5 6 7v2.5C6 10.7 5.2 12 3.5 12 5.2 12 6 13.3 6 14.5V17c0 2 1 3 3 3M15 4c2 0 3 1 3 3v2.5c0 1.2.8 2.5 2.5 2.5-1.7 0-2.5 1.3-2.5 2.5V17c0 2-1 3-3 3"/></g>
+    <text class="name" y="246" text-anchor="middle">TypeScript</text>
+    <text class="sub" y="264" text-anchor="middle">strict, no framework</text>
+  </g>
+  <g transform="translate(606.4 0)">
+    <rect class="tile" x="-24" y="174" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 186)"><path d="M13 2.5 4.5 13.5h6.5l-1 8 8.5-11h-6.5l1-8Z"/></g>
+    <text class="name" y="246" text-anchor="middle">esbuild</text>
+    <text class="sub" y="264" text-anchor="middle">bundles in &lt;1 s</text>
+  </g>
+  <g transform="translate(772.8 0)">
+    <rect class="tile" x="-24" y="174" width="48" height="48" rx="13"/>
+    <g class="glyph" transform="translate(-12 186)"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><path d="M8 12.3l2.8 2.8L16.3 9.2"/></g>
+    <text class="name" y="246" text-anchor="middle">Vitest + Playwright</text>
+    <text class="sub" y="264" text-anchor="middle">unit and real-Chrome checks</text>
+  </g>
+</svg>
