@@ -160,7 +160,7 @@ web/
   public/          landing page, demo article, fonts
   src/             web demo reader (the content script plus a chrome.* shim)
 scripts/           build, icons, real-Chrome checks, demo recording
-spike/             first on-device probe, kept for reference
+video/             demo video pipeline (narration by ElevenLabs); not part of the app
 ```
 
 ## Privacy
